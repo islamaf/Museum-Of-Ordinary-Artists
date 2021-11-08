@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Varela+Round&display=swap');
+
+.ava-container {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 4rem auto;
+  right: 0%;
+  left: 0%;
+  /* position: relative;
+  text-align: center;
+  display: flex; */
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  margin: auto 6rem;
+}
+
+.ava-container h1 {
+  font-size: 3rem;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.h2-mod {
+  font-size: 1.5rem;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.ava-container a {
+  font-size: 1.4rem;
+  /* margin-left: 4rem; */
+}
+
+#dp-change {
+  position: relative;
+  height: 35px;
+  top: 25px;
+  right: 7%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  right: 2.3%;
+}
+
+.top-attrs, .bot-attrs {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.top-attrs a, form {
+  text-decoration: none;
+}
+
+.bot-attrs p {
+  font-size: 1.25rem;
+  white-space: nowrap;
+}
+
+.follow-btn {
+  border: 2px solid whitesmoke;
+  margin-left: 15px;
+  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 6%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  background-color: var(--darkgray);
+  color: whitesmoke;
+}
+
+.unfollow-btn {
+  border: 2px solid var(--darkgray);
+  margin-left: 15px;
+  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 6%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  background-color: whitesmoke;
+  color: var(--darkgray);
+}
+
+#edit-btn {
+  border: 2px solid whitesmoke;
+  margin-left: 15px;
+  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 6%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  background-color: var(--darkgray);
+  color: whitesmoke;
+}
+
+.admin-ctrl-btn {
+  border: 2px solid whitesmoke;
+  margin-left: 15px;
+  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 6%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  background-color: var(--darkgray);
+  color: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+    .avatar {
+      vertical-align: middle;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      transition: 0.5s ease-in-out;
+      margin: auto 5rem;
+    }
+
+    .top-attrs a, form {
+      text-decoration: none;
+      display: block;
+    }
+
+    #photos {
+      line-height: 0;
+      column-count: 1;
+      column-gap: 0px;
+      margin: 0;
+      padding: 0;
+    }
+
+    #edit-btn, .admin-ctrl-btn, .unfollow-btn, .follow-btn {
+      margin-left: 0;
+    }
+
+    .top-attrs, .bot-attrs {
+      display: block;
+    }
+}

@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>{{ name | capitalize }}</title>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/form.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/image.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+<div>
+  {% if user == current_user and user.is_confirmed == False %}
+    <p>A confirmation email has been sent to your email. Kindly click the link sent to verify your account.
+      <i><a href="{{ url_for('user_control.send') }}">Click here to resend the email.</a></i>
+    </p>
+  {% endif %}
+</div>
+<article>
+  <div class="ava-container">
+    <img onmouseover="show_link()" onmouseout="hide_link()" class="avatar"
+    src="https://mofoa-images.s3.eu-central-1.amazonaws.com/static/images/dp/{{profile_pic}}">
+    <div class="container-attrs">
+      <div class="top-attrs">
+        <h1>{{ user.name | capitalize}}</h1>
+        {% if current_user.is_authenticated == True and current_user.name == user.name %}
+          <a href="{{ url_for('user_control.edit') }}">
+            <button id="edit-btn" name="edit">Edit profile</button>
+          </a>
+        {% endif %}
+        {% if user != current_user and current_user.is_authenticated == True %}
+          {% if not current_user.is_following(user) %}
+            <form action="{{ url_for('user_control.follow', name=user.name) }}" method="post">
+              <button class="follow-btn" type="submit" name="follow">Follow</button>
+            </form>
+          {% else %}
+            <form action="{{ url_for('user_control.unfollow', name=user.name) }}" method="post">
+              <button class="unfollow-btn" type="submit" name="unfollow">Unfollow</button>
+            </form>
+          {% endif %}
+        {% endif %}
+        {% if user.is_admin == True and current_user.name == user.name %}
+          <a href="/admin">
+            <button class="admin-ctrl-btn" name="admin">Admin</button>
+          </a>
+          <a href="/approval">
+            <button class="admin-ctrl-btn" name="Approvals">Approvals</button>
+          </a>
+        {% endif %}
+      </div>
+      <div class="bot-attrs">
+        {% if user.followers.count() == 1 %}
+          <p>{{ user.followers.count() }} Follower&nbsp;&nbsp;&nbsp;{{ user.followed.count() }} Following</p>
+        {% else %}
+          <p>{{ user.followers.count() }} Followers&nbsp;&nbsp;&nbsp;{{ user.followed.count() }} Following</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div>
+    {% if posts %}
+      {% if current_user.is_authenticated and current_user.name == user.name %}
+        <div id="photos">
+          {% for post in posts %}
+          <form action="/delete_post" method="post">
+            <div class="wrapper tab-item">
+              <div class="tab">
+                <div class="effect effect-twelve">
+                  <img src="https://mofoa-images.s3.eu-central-1.amazonaws.com/static/images/uploads/{{post}}" alt="{{ name }}">
+                  <input type="hidden" name="post_to_delete" value="{{ post }}">
+                  <div id='tab-btn' class="tab-btn">
+                    <button class="mod-btn" type="submit" name="submit">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% if not current_user.is_authenticated or current_user.name != user.name %}
+        <div id="photos">
+          {% for post in posts %}
+            <div class="wrapper tab-item">
+              <div class="tab">
+                <div class="effect effect-twelve">
+                  <img src="https://mofoa-images.s3.eu-central-1.amazonaws.com/static/images/uploads/{{post}}" alt="{{ name }}">
+                  <div class="tab-text">
+                    <h1>{{ name |capitalize }}</h1>
+                    <div class="icons-block">
+                      <a href="#" class="social-icon-1"><i class="fa fa-facebook-official"></i></a>
+                      <a href="#" class="social-icon-2"><i class="fa fa-twitter-square"></i></a>
+                      <a href="#" class="social-icon-3"><i class="fa fa-youtube-square"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% else %}
+      {% if current_user.name == user.name %}
+        <h2 class="h2-mod">You don't have any posts yet!</h2>
+      {% else %}
+        <h2 class="h2-mod">User does not have any posts yet, come back again later!</h2>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <br>
+
+  <div>
+    {% if user == current_user %}
+      {% if pending_posts %}
+        {% if current_user.is_authenticated %}
+          <h2>Pending posts: </h2>
+          {% for post in pending_posts %}
+          <div id="photos">
+            <form action="/cancel_submission" method="post">
+              <div class="wrapper tab-item">
+                <div class="tab">
+                  <div class="effect effect-twelve">
+                    <img src="https://mofoa-images.s3.eu-central-1.amazonaws.com/static/images/uploads/{{post}}" alt="{{ name }}">
+                    <input type="hidden" name="post_to_cancel" value="{{ post }}">
+                    <div id='tab-btn' class="tab-btn">
+                      <button class="mod-btn" type="submit" name="cancel">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        <h2 class="h2-mod">No pending posts.</h2>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  <script type="text/javascript">
+    show_link = function() {
+      document.getElementById('dp-change').style.zIndex = "90";
+    }
+
+    hide_link = function() {
+      document.getElementById('dp-change').style.zIndex = "-1";
+    }
+  </script>
+</article>
+{% endblock %}

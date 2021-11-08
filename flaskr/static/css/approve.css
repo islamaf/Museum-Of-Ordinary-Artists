@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Varela+Round&display=swap');
+
+:root {
+  --vargray: #212329;
+}
+
+.container {
+  margin-top: 100px;
+  padding: 100px 0;
+}
+
+.centered-container {
+  display: block;
+  min-height: 0px;
+  flex: 1;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  text-align: center;
+  object-fit: fill;
+}
+
+.container-btn {
+  text-decoration: none;
+  font-family: "Exo", sans-serif;
+  font-weight: 400;
+/*   border: 2px solid whitesmoke; */
+  opacity: 1;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 3%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  color: whitesmoke;
+  background-color: #212329;
+}
+
+.btn-align {
+  margin-top: 2rem;
+}
+
+.heading-2 {
+  font-family: 'Great vibes', cursive;
+  font-size: 4rem;
+  padding: 1rem 0;
+}
+
+.para {
+  font-family: 'Varela Round', sans-serif;
+  font-size: 1.875rem;
+  padding: 1rem 0;
+}

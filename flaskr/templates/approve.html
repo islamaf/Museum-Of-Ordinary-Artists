@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Approval</title>
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/approve.css') }}">
+{% endblock %}
+
+
+{% block body %}
+<article>
+  <section class="container">
+    <div class="centered-container">
+      <h2 class="heading-2">Submitted!</h2>
+      <p class="para">
+        Your posts have been submitted for approval.
+        Wait an admin to make sure from the posts and approve them.<br>
+        Until then, you will be able to see your posts in the pending posts section in your profile page.
+      </p>
+      <div class="btn-align">
+        <a href="{{ url_for('home.index') }}" class="container-btn">Embrace art</a>
+      </div>
+    </div>
+  </section>
+</article>
+{% endblock %}

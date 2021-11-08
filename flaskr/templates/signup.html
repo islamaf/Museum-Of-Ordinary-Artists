@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Signup</title>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+<article>
+  <div class="box">
+    <h1>Sign up MofOA</h1>
+    <form action="/signup" method="POST">
+      <input type="text" required placeholder="Username" name="name">
+      <input type="email" required placeholder="Email" name="email">
+      <input type="password" required placeholder="Password" name="password">
+      <input class="btn" type="submit" value="Submit" name="submit">
+    </form>
+  </div>
+</article>
+{% endblock %}

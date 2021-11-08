@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% block title %}
+    <title>Museum of ordinary artists</title>
+  {% endblock %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/nav.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/home.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/image.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  {% block head %}
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/loader.css') }}">
+  <link rel="stylesheet" href="{{ url_for('.static', filename='css/modal.css') }}">
+  {% endblock %}
+</head>
+<body>
+  {% block loading %}
+  <section id="progress-sec">
+    <div id="myProgress">
+      <div id="myBar"></div>
+    </div>
+    <div id="pb-end">
+      <p id="pb-end-p"></p>
+    </div>
+  </section>
+  {% endblock %}
+  {% block section_open %}
+  <section id="to-pull">
+  {% endblock %}
+  <nav class="navbar">
+    <h1 id="logo">MofOA</h1>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="{{ url_for('home.index') }}" class="nav-link">Home</a>
+      </li>
+      {% if current_user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{{ url_for('user_control.profile', name=current_user.name) }}" class="nav-link">Profile</a>
+      </li>
+      {% endif %}
+      {% if not current_user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{{ url_for('auth.login') }}" class="nav-link">Login</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url_for('auth.signup') }}" class="nav-link">Sign up</a>
+      </li>
+      {% endif %}
+      {% if current_user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{{ url_for('auth.logout') }}" class="nav-link">Logout</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        {% if current_user.is_authenticated %}
+          <button class="btn" type="button" onclick="submit()" name="button">Upload</button>
+        {% else %}
+          <button class="btn" id="goto-login" type="button" onclick="login()" name="button">Upload</button>
+        {% endif %}
+      </li>
+    </ul>
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+  {% block body %}
+  <article id="article">
+    <div id="photos">
+      {% for post in wall | sort(attribute='insertion_date', reverse=True) %}
+      <div class="wrapper tab-item">
+        <div class="tab">
+          <div class="effect effect-twelve">
+            <img id="{{ post.id }}" onclick="enlarge()" src="https://mofoa-images.s3.eu-central-1.amazonaws.com/static/images/uploads/{{post.name}}" alt="{{ post.Author.name }}">
+            <div class="tab-text">
+                <a href="/{{post.Author.name}}">
+                  <h1>{{ post.Author.name |capitalize }}</h1>
+                </a>
+                <div class="icons-block">
+                  <!-- <a href="#" class="social-icon-1"><i class="fa fa-facebook-official"></i></a>
+                  <a href="#" class="social-icon-2"><i class="fa fa-twitter-square"></i></a>
+                  <a href="#" class="social-icon-3"><i class="fa fa-youtube-square"></i></a> -->
+                  {% if current_user.is_authenticated == True %}
+                      <a id="like-action" data-postid="{{post.id}}" href="{{ url_for('user_control.like_action', post_id=post.id) }}"
+                         class="social-icon-4">
+                        {% if current_user.has_liked_post(post) %}
+                          <i class="like-i fa fa-heart">{{ post.likes.count() }}</i>
+                        {% else %}
+                          <i class="like-i fa fa-heart-o">{{ post.likes.count() }}</i>
+                        {% endif %}
+                      </a>
+                  {% else %}
+                    <i class="fa fa-heart">{{ post.likes.count() }}</i>
+                  {% endif %}
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="img01">
+      <div id="caption"></div>
+    </div>
+    {% block footer %}
+    <div class="footer">
+      <h2>Museum of ordinary artists&#169;</h2>
+    </div>
+    {% endblock %}
+  </article>
+  {% endblock %}
+  {% block section_close %}
+  </section>
+  {% endblock %}
+  <script type="text/javascript" src="{{ url_for('.static', filename='js/post_no_reload.js') }}"></script>
+  <script type="text/javascript">
+  updateList = function(id) {
+      var input = document.getElementById(id);
+      var output = document.getElementById('list');
+      var chosen = document.getElementById('chosen');
+      chosen.style.display = 'none';
+      var children = "";
+
+      if (input.files.length <= 3) {
+          for (var i = 0; i < input.files.length; ++i) {
+            children += '<li>' + input.files.item(i).name + '</li>';
+          }
+      } else {
+        for (var i = 0; i < 3; ++i) {
+          children += '<li>' + input.files.item(i).name + '</li>';
+        }
+      }
+      output.innerHTML = '<ul>'+children+'</ul>';
+  }
+
+  disable_none = function(){
+    var element = document.getElementById('list');
+    var lists = element.children.length;
+    if (lists == 0) {
+      alert('You have to submit more than 0 files');
+      return false;
+    }
+  }
+
+  submit = function() {
+    window.location.href = "{{ url_for('home.do_upload') }}";
+  }
+
+  function off() {
+    document.getElementById("post-overlay").style.display = "none";
+  }
+
+  function login() {
+    window.location.href = "{{ url_for('auth.login') }}";
+  }
+
+  apply_input = function(id) {
+    document.getElementById(id).click();
+  }
+
+  function loading(){
+    $("#loading").css('display', 'flex');
+    $("#content").hide();
+  }
+
+  $(document).on('click', '#like-action', function(e){
+    $.ajax({
+      url: "/like/"+$(this).attr("data-postid"),
+      type: "post",
+      contentType: 'application/json;charset=UTF-8',
+      dataType: "json",
+      data : { jsdata: $(this).attr("data-postid") },
+      success: function(data){
+        console.log(data);
+      },
+      error: function(xhr){
+        console.log(xhr);
+      }
+    });
+    e.preventDefault();
+  });
+
+  $(document).on('click', '#like-action', function() {
+    if($(this).children().hasClass("fa-heart")){
+      $(this).children().removeClass("fa-heart").addClass("fa-heart-o");
+      $(this).children().text(parseInt($(this).children().text(), 10)-1);
+    } else {
+      $(this).children().removeClass("fa-heart-o").addClass("fa-heart");
+      $(this).children().text(parseInt($(this).children().text(), 10)+1);
+    }
+  });
+
+  var my_bar = document.getElementById("myBar");
+  var re = document.getElementById("pb-end");
+  var pull_up_page = document.getElementById("to-pull");
+  var p_sec = document.getElementById("progress-sec");
+
+  my_bar.addEventListener("animationend", function() {
+    // re.innerHTML = "Loaded";
+    setTimeout(function() {
+      p_sec.style.transition = "opacity 1s";
+      p_sec.style.opacity = '0';
+      // p_sec.style.display = "none";
+      pull_up_page.style.display = "block";
+    } ,1500);
+  });
+
+  const hamburger = document.querySelector(".hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
+  hamburger.addEventListener("click", mobileMenu);
+
+  function mobileMenu() {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("active");
+  }
+
+  const navLink = document.querySelectorAll(".nav-link");
+
+  navLink.forEach(n => n.addEventListener("click", closeMenu));
+
+  function closeMenu() {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
+  }
+
+  change_column_view = function() {
+    var photos = document.getElementById('photos');
+    var sub_divs = photos.children.length;
+    if (sub_divs < 4) {
+      photos.style.columnCount = 3;
+    }
+    if (sub_divs < 3) {
+      photos.style.columnCount = 2;
+    }
+    if (sub_divs < 2) {
+      photos.style.columnCount = 1;
+    }
+  }
+
+  change_column_view();
+  </script>
+  <script type="text/javascript" src="{{ url_for('.static', filename='js/modal.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/approve.css') }}">
+{% endblock %}
+
+{% block body %}
+<article>
+  <section class="container">
+    <div class="centered-container">
+      <h2 class="heading-2">Limit reached!</h2>
+      <p class="para">
+        You have reached your 2 day limit for posting.<br>
+        Kindly wait 2 more days before you start posting again.
+      </p>
+      <div class="btn-align">
+        <a href="{{ url_for('home.index') }}" class="container-btn">Embrace art</a>
+      </div>
+    </div>
+  </section>
+</article>
+{% endblock %}

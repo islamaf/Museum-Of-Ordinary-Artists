@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Login</title>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/form.css') }}">
+{% endblock %}
+
+{% block body %}
+<article>
+  <div class="box">
+    <h1>Sign in MofOA</h1>
+    <form action="/login" method="POST">
+      <input type="email" placeholder="Email" name="email">
+      <input type="password" placeholder="Password" name="password">
+      <input type="checkbox" id="remember" name="remember" value="Remember Me">
+      <label class="label-mod" for="remember">Remember Me</label>
+      <br>
+      <input class="btn" type="submit" value="Login" name="submit">
+    </form>
+  </div>
+</article>
+{% endblock %}

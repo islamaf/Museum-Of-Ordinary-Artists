@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+:root {
+  --darkgray: #212329;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+
+.wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative
+}
+
+.tab .effect {
+  margin: auto;
+  /* box-shadow: 0 0 15px 5px rgba(0, 0, 0, .07); */
+  background-color: #0000008f;
+  /* border: 5px solid #f5f5f5; */
+}
+
+.tab .effect img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  /* opacity: .8; */
+}
+
+.tab .effect .tab-text {
+  padding: 2em;
+  font-size: 1.25rem;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-text h1 {
+  color: black;
+  font-family: 'Varela Round', sans-serif;
+  z-index: 2;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.tab-text a {
+  color: var(--vargray);
+  text-decoration: none;
+}
+
+.tab-btn {
+  padding: 2em;
+  display: block;
+  color: black;
+  font-size: 1.25rem;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tab-btn button {
+  color: black;
+  z-index: 2;
+  margin: 0;
+  font-size: 2rem;
+}
+
+.tab-text p {
+  color: black;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.mod-btn {
+  border: 2px solid whitesmoke;
+  opacity: 0.8;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  border-radius: 6%;
+  font-size: 1.8rem;
+  font-weight: bold;
+  transition: 0.25s ease-in;
+  background-color: whitesmoke;
+  color: var(--darkgray);
+}
+
+.hide {
+  display: none;
+}
+
+/* .effect.effect-twelve {
+  background: #42b078;
+} */
+.effect-twelve .tab-text h1 {
+  position: relative;
+  padding: 1rem 0;
+  text-align: left;
+  overflow: hidden;
+  /* font-family: Oswald; */
+}
+
+.effect-twelve .tab-text input {
+  position: relative;
+  padding: 1rem 0;
+  text-align: left;
+  overflow: hidden;
+  /* font-family: Oswald; */
+}
+
+.effect.effect-twelve:hover h1 {
+  z-index: 4;
+}
+
+.effect.effect-twelve:hover .tab-btn {
+  z-index: 8;
+}
+
+/* .effect.effect-twelve h1:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transform: translate3d(-100%, 0, 0);
+  transition: all .35s;
+  -webkit-transform: translate3d(-100%, 0, 0);
+  -webkit-transition: all .35s;
+}
+
+.effect.effect-twelve:hover h1:after {
+  transform: translate3d(0, 0, 0);
+} */
+.effect-twelve .tab-text p {
+  padding: .7em 0;
+  font-size: .8rem;
+  text-align: left;
+  line-height: 1.1;
+  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  opacity: 0;
+  transition: all .35s;
+  -webkit-transition: all .35s;
+  font-family: Poppins;
+}
+
+.effect-twelve:hover p {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.effect.effect-twelve img {
+  max-width: none;
+  opacity: 1;
+  /* transform: translate3d(-10px, 0, 0); */
+  transition: all .35s;
+  /* -webkit-transform: translate3d(-10px, 0, 0); */
+  -webkit-transition: all .35s;
+}
+
+.effect.effect-twelve:hover img {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  opacity: .6;
+}
+
+.effect.effect-twelve .icons-block {
+  z-index: 4;
+  position: absolute;
+  bottom: 25px;
+  width: 100%;
+  left: 0;
+  text-align: right;
+  /* padding-left: 15px; */
+  padding-right: 3rem;
+}
+
+.effect.effect-twelve .icons-block .social-icon-1,
+.effect.effect-twelve .icons-block .social-icon-2,
+.effect.effect-twelve .icons-block .social-icon-3 {
+  transition: all .6s ease-in-out;
+  opacity: 0;
+}
+
+.effect.effect-twelve:hover .social-icon-1 {
+  opacity: 1;
+  transition-delay: .3s;
+  transition-duration: .6s;
+}
+
+.effect.effect-twelve:hover .social-icon-2 {
+  opacity: 1;
+  transition-delay: .4s;
+  transition-duration: .6s;
+}
+
+.effect.effect-twelve:hover .social-icon-3 {
+  opacity: 1;
+  transition-delay: .5s;
+  transition-duration: .6s;
+}
+
+.effect.effect-twelve:hover .social-icon-4 {
+  opacity: 1;
+  transition-delay: .6s;
+  transition-duration: .6s;
+}
+
+.effect.effect-twelve .icons-block i {
+  /* color: rgba(0,0,0); */
+  color: #000000c7;
+  padding-left: 8px;
+  font-size: 2rem;
+}

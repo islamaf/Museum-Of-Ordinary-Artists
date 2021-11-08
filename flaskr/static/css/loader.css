@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@300;400&family=Varela+Round&display=swap');
+
+:root {
+    --darkgray: #212329;
+}
+
+#myProgress {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+}
+
+#myBar {
+  width: 100%;
+  height: 5px;
+  background-color: var(--darkgray);
+  text-align: center;
+  line-height: 30px;
+  color: whitesmoke;
+  animation-name: pbar;
+  animation-duration: 6s;
+}
+
+@keyframes pbar {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+#pb-end {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Exo', sans-serif;
+  color: var(--darkgray);
+}
+
+#pb-end-p {
+  font-size: 1.6rem;
+  animation: change 6s;
+}
+
+@keyframes change {
+    0% {
+	  color: var(--darkgray);
+    }
+
+	50% {
+		color: whitesmoke;
+	}
+
+	100% {
+		color: var(--darkgray);
+	}
+}
+
+#to-pull {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: fadeall 4s;
+  display: none;
+}
+
+@keyframes fadeall {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* #photos {
+  animation: pullup 6s;
+} */
+
+@keyframes pullup {
+  from {
+/*     bottom: -600px; */
+    opacity: 0;
+  }
+
+  to {
+/*     bottom: 0; */
+    opacity: 1;
+  }
+}
+
+#nav {
+  animation: pulldown 4s;
+}
+
+@keyframes pulldown {
+  from {
+/*     top: -900px; */
+    opacity: 0;
+  }
+
+  to {
+/*     top: 0; */
+    opacity: 1;
+  }
+}
+
+#pb-end-p:after {
+  content: "Almost done";
+  animation: swap 6s linear;
+}
+
+@keyframes swap {
+  from {
+    content: "Putting images into place";
+  }
+
+  to {
+    content: "Almost done";
+  }
+}

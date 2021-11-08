@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Edit profile</title>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/form.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/upload.css') }}">
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="box mod-box">
+  <form onsubmit="return disable_none();" action="/update_image" method="post" enctype="multipart/form-data">
+    <label class="label-mod" for="new_pic">Upload a new profile picture</label>
+    <button class="upload-btn btn-style edit-btn-style" onclick="apply_input('new_pic')" type="button" name="button">Upload Image</button>
+    <input class="upload-input" type="file" onchange="updateList('new_pic')" name="new_pic" id="new_pic">
+    <label id="chosen">Choose file</label>
+    <div id="list"></div>
+    <input type="submit" class="upload-btn submit-btn-style edit-submit-btn-style" name="submit" value="Submit">
+  </form>
+</div>
+<div class="box mod-box">
+  <h1>Edit Profile</h1>
+  <form action="/edit" method="post">
+    <label class="label-mod" for="email">Change your email: </label>
+    <input type="text" placeholder="Email" name="email" value="{{ email }}">
+    <label class="label-mod" for="password">Change your password: </label>
+    <input type="password" placeholder="Password" name="password" required value="{{ password }}">
+    <input class="btn" type="submit" name="submit" value="Save">
+  </form>
+</div>
+<div class="box mod-box">
+  <h1>Delete Account</h1>
+  <form action="/delete_user" method="POST">
+    <label class="label-mod" for="email">Confirm your email: </label>
+    <input type="text" placeholder="Email" required name="email">
+    <input class="btn" type="submit" value="Delete" name="submit">
+  </form>
+</div>
+<br>
+{% endblock %}

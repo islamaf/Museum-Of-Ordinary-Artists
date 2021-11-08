@@ -1,0 +1,23 @@
+.edit-link-mod {
+  position: absolute;
+  top: 70%;
+  margin-right: -27px;
+  display: block;
+}
+
+#list {
+  margin: 1.3rem 0rem;
+}
+
+.edit-btn-style {
+  left: 31.5%;
+}
+
+.edit-submit-btn-style {
+  left: 0;
+  width:
+}
+
+.box input[type=submit] {
+  width: 26%;
+}

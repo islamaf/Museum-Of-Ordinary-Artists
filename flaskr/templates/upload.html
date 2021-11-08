@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  <title>Upload images</title>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/upload.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="loading" class="centered-loader">
+  <h3>We are processing your image(s), it may take several seconds...</h3>
+  <div class="loadingio-spinner-spinner-q9mfzruc09">
+    <div class="ldio-vmvtepnr38">
+    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+</div>
+<div class="content">
+  <form onsubmit="return disable_none();" action="/submit_post" method="post" enctype="multipart/form-data">
+      <div class="upload-container">
+        <button class="upload-btn btn-style" onclick="apply_input('image')" type="button" name="button">Upload Images</button>
+        <input title="file-upload" class="upload-input" type="file" name="images" multiple onchange="updateList('image')" id="image">
+      </div>
+      <div class="list-container">
+        <label id="chosen">
+          To avoid traffic, please choose up to 3 files.<br>
+          Files after the first 3 will be ignored.</label>
+        <div id="list"></div>
+        <input type="submit" class="upload-btn submit-btn-style" name="submit" value="Submit" onclick="loading();">
+      </div>
+  </form>
+</div>
+{% endblock %}
