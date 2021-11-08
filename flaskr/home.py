@@ -46,12 +46,6 @@ def index():
         if post.is_approved:
             post_list.append(post)
 
-    # for user in username:
-    #     posts = user.posts.all()
-    #     for p in posts:
-    #         if p.is_approved:
-    #             post_list.append(p)
-
     return render_template('base.html', wall=post_list)
 
 
@@ -130,12 +124,6 @@ def submit_post():
 
         pl_s = sorted(pl, reverse=True)
 
-        # today = datetime.datetime.today()
-        # limit = pl_s[0] + timedelta(days=2)
-        # limit = pl_s[0] + timedelta(hours=2)
-
-        # if limit < today:
-        # images_append(images)
         for image in images:
 
             if image.filename == "":
@@ -146,37 +134,24 @@ def submit_post():
 
                 my_bucket = get_bucket()
 
-                # path_to_dir = './flaskr/static/images/uploads/' + filename
-
                 user = User.query.filter_by(name=current_user.name).first()
 
                 add_post = Post(name=filename, user_email=current_user.email, Author=user)
 
                 db.session.add(add_post)
                 db.session.commit()
-                #
-                # for file_name in file_names:
-                #     blob_name = f"{dir_name}/{file_name}"
-                #     file_path = f"{path}/{file_name}"
 
                 image.seek(0)
-                # image.save(path_to_dir)
                 my_bucket.Object("static/images/uploads/" + image.filename).put(Body=image)
-                # block_blob_service.create_blob_from_path(container_name, filename, path_to_dir)
 
         flash('Post(s) have been submitted for approval!')
 
         return render_template('approve.html')
-        # else:
-        #     return render_template('limit.html')
     else:
-        # images_append(images)
         for image in images:
             filename = secure_filename(image.filename)
 
             my_bucket = get_bucket()
-
-            # path_to_dir = './flaskr/static/images/uploads/' + filename
 
             user = User.query.filter_by(name=current_user.name).first()
 
@@ -186,9 +161,7 @@ def submit_post():
             db.session.commit()
 
             image.seek(0)
-            # image.save(path_to_dir)
             my_bucket.Object("static/images/uploads/" + image.filename).put(Body=image)
-            # block_blob_service.create_blob_from_path(container_name, filename, path_to_dir)
 
         flash('Post(s) have been submitted for approval!')
 

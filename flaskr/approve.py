@@ -19,9 +19,7 @@ def to_approve():
             posts = user.posts.all()
             for p in posts:
                 if not p.is_approved:
-                    # post_list.append((b64encode(p.data).decode('ascii'), p.Author.name, p.name, p.is_approved))
                     post_list.append((p.name, p.Author.name, p.is_approved))
-                    # print(p.Author.name, p.link)
 
         return render_template('secret.html', all_posts=post_list)
     else:
@@ -33,18 +31,13 @@ def to_approve():
 def confirm_approval():
     name = request.form.get('name')
     post = request.form.get('post')
-    # print(name)
-    # print(post)
 
     username = User.query.all()
     for user in username:
         posts = user.posts.all()
         for p in posts:
-            # print(p.name)
-            # print(p.Author.name)
             if (not p.is_approved) and p.name == post and p.Author.name == name:
                 p.is_approved = True
                 db.session.commit()
-                # return redirect(url_for('approve.to_approve'))
 
     return redirect(url_for('approve.to_approve'))

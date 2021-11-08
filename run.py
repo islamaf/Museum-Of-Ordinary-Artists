@@ -25,9 +25,6 @@ def create_app():
     app.config['FLASK_ADMIN_SWATCH'] = 'darkly'
 
     app.config['SECRET_KEY'] = secret_key
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:Neptune99@localhost:5432/mofoa'
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://mofoa-db.cqvntsr097li.eu-central-1.rds.amazonaws.com:5432'
     app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
         "pool_pre_ping": True,
         "pool_recycle": 300,

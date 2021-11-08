@@ -30,7 +30,6 @@ def send():
     msg.body = 'Your link is {}'.format(link)
     mail.send(msg)
 
-    # return '<h1> The email you entered is {}. The token is {}.</h1>'.format(email, token)
     return render_template('token.html', email=email)
 
 
@@ -121,8 +120,6 @@ def update_image():
         user = User.query.filter_by(name=current_user.name).first()
         my_bucket = get_bucket()
         default = 'img_avatar.png'
-        # if user.profile_picture != default:
-        #     my_bucket.Object('static/images/dp/' + user.profile_picture).delete()
         user.profile_picture = filename
 
         db.session.commit()
@@ -261,15 +258,3 @@ def like_action(post_id):
             db.session.commit()
             return json.dumps({'status': 'unliked'})
     return redirect(request.referrer)
-
-# @user_control.route('/unlike/<int:post_id>', methods=['GET', 'POST'])
-# def unlike_action(post_id):
-#     if request.method == "POST":
-#         post = Post.query.filter_by(id=post_id).first_or_404()
-#         if current_user.has_liked_post(post):
-#             current_user.unlike_post(post)
-#             db.session.commit()
-#             return json.dumps({'status': 'unliked'})
-#         else:
-#             pass
-#     return redirect(request.referrer)

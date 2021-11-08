@@ -44,8 +44,6 @@ def signup_post():
 
         new_user = User(name=name, email=email, password=generate_password_hash(password, method='sha256'))
 
-        # print(new_user)
-
         db.session.add(new_user)
         db.session.commit()
 
@@ -66,7 +64,6 @@ def send(email_from_signup):
     msg.body = 'Your link is {}'.format(link)
     mail_on_signup.send(msg)
 
-    # return '<h1> The email you entered is {}. The token is {}.</h1>'.format(email, token)
     return render_template('token.html', email=email)
 
 
@@ -79,7 +76,6 @@ def confirm_email(token):
         db.session.commit()
     except SignatureExpired:
         return '<h1>The token is expired!</h1>'
-    # return '<h1>Confirmation succeeded!</h1>'
     return render_template('confirm.html')
 
 
@@ -91,7 +87,6 @@ def login_post():
         remember = True if request.form.get('remember') else False
 
         user = User.query.filter_by(email=email).first()
-        # print(user)
 
         if not user or not check_password_hash(user.password, password):
             flash('Please check your login details and try again.')

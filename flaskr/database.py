@@ -3,9 +3,6 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-
-# db_string = 'sqlite:///test.db'
-
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('users.id')),
                      db.Column('followed_id', db.Integer, db.ForeignKey('users.id'))
