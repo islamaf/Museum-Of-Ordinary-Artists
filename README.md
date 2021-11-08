@@ -12,6 +12,7 @@ Museum of ordinary artists is a project that is intended to be a free space for 
 * SqlAlchemy.
 * AWS S3.
 * Heroku.
+* Gmail service.
 
 ## Where to find Museum of ordinary artists?
 Museum of ordinary artists has not been assigned a domain yet. But using the herokuapp auto defined domain, you can visit Museum of ordinary artists here, https://mofoa.herokuapp.com/.
