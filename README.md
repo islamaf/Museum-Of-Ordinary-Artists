@@ -18,6 +18,12 @@ Museum of ordinary artists is a project that is intended to be a free space for 
 Museum of ordinary artists has not been assigned a domain yet. But using the herokuapp auto defined domain, you can visit Museum of ordinary artists here, https://mofoa.herokuapp.com/.
 The website functions well on computers/laptops and mobile phones.
 
+## How to use?
+* Sign up.
+* Log in.
+* Confirm your email.
+* Start posting!
+
 ## Snippets of Museum of ordinary artists
 * Home page
 ![Screenshot (42)](https://user-images.githubusercontent.com/44944648/140818277-1c2eedc4-892c-4f8b-9a45-89a29c2c07db.png)
