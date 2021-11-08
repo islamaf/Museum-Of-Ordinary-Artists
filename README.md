@@ -20,6 +20,6 @@ Museum of ordinary artists has not been assigned a domain yet. But using the her
 * Home page
 ![Screenshot (42)](https://user-images.githubusercontent.com/44944648/140818277-1c2eedc4-892c-4f8b-9a45-89a29c2c07db.png)
 * User profile
-![Screenshot (43)](https://user-images.githubusercontent.com/44944648/140818282-b08a5098-6b9a-47ee-a5e8-db151f5b9c51.png)
+![Screenshot (45)](https://user-images.githubusercontent.com/44944648/140823577-b17d7eac-e716-4409-9ae2-ec42d244f7c0.png)
 * Upload page
 ![Screenshot (44)](https://user-images.githubusercontent.com/44944648/140818286-c0884a48-4783-4d6e-960d-dd5dd31e9de7.png)
