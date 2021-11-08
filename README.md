@@ -10,6 +10,7 @@ Museum of ordinary artists is a project that is intended to be a free space for 
 * Ajax.
 * PostgreSql.
 * SqlAlchemy.
+* AWS S3.
 * Heroku.
 
 ## Where to find Museum of ordinary artists?
