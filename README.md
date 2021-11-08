@@ -1,4 +1,4 @@
-# Museum-Of-Ordinary-Artists
+# Museum Of Ordinary Artists
 
 ## About
 Museum of ordinary artists is a project that is intended to be a free space for talented artists to share their art on and gain likes. With the functionality of posting their social media accounts, they will also be able to gain traffic on the other platforms. This will give a chance for people to be more exposed to art and the artists, to appreciate and embrace it.
