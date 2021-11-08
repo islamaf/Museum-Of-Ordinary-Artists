@@ -60,9 +60,6 @@ def create_app():
     admin.add_view(Controller(User, db.session))
     admin.add_view(Controller(Post, db.session))
 
-    # admin = User(name='islam', email='islam_9t9@yahoo.com', password=generate_password_hash('islam', method='sha256')
-    #              , is_confirmed=True, is_admin=True)
-
     with app.app_context():
         db.create_all()
         # db.session.add(admin)
