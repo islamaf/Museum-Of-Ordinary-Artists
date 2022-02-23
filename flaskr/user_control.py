@@ -84,7 +84,6 @@ def profile_image_append(image):
 
     if image and allowed_image(image.filename):
         filename = secure_filename(image.filename)
-        print(filename)
 
         path_to_dir = './flaskr/static/images/dp/' + filename
         user = User.query.filter_by(name=current_user.name).first()

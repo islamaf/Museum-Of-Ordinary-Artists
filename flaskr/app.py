@@ -15,7 +15,7 @@ from flaskr.database import *
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_pyfile('config.cfg')
+    app.config.from_pyfile('config.py')
 
     from flaskr.home import home, cache
     from flaskr.auth import auth, mail_on_signup
@@ -30,7 +30,8 @@ def create_app():
         "pool_recycle": 300,
     }
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://xqprxuypzliusf:271fcbb45b74954c5f35a0dc8e0c98939480cd8aaa1ccc7fd2c862e544e4665a@ec2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/ddrnpn0tqfps8o'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zyqkkqucdeocga:c4858941e40bbf702bf94fa9698e67cf8cbffae055e988acb6c240e4876d61a5@ec2-52-214-178-113.eu-west-1.compute.amazonaws.com:5432/deqsf43qvnoue3'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://zyqkkqucdeocga:c4858941e40bbf702bf94fa9698e67cf8cbffae055e988acb6c240e4876d61a5@ec2-52-214-178-113.eu-west-1.compute.amazonaws.com:5432/deqsf43qvnoue3'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRESQL_URI")
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['CACHE_TYPE'] = 'SimpleCache'

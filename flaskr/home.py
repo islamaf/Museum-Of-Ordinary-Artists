@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash, send_from_directory
 from flask_login import login_required, current_user
 from flask_caching import Cache
@@ -19,7 +20,8 @@ home = Blueprint('home', __name__, template_folder='./templates', static_folder=
 cache = Cache()
 
 account_name = 'mofoa'
-account_key = '+R0ExML/EbevWuhOHibLzZ4OR4/4/haTYnC6Hcv0I9c8/0jHCa1/Iu45NcrG7LKiAuhaQMGoZ+fGDV6K+qUTUA=='
+# account_key = '+R0ExML/EbevWuhOHibLzZ4OR4/4/haTYnC6Hcv0I9c8/0jHCa1/Iu45NcrG7LKiAuhaQMGoZ+fGDV6K+qUTUA=='
+account_key = os.environ.get("ACCOUNT_KEY")
 container_name = 'mofoa-images'
 
 block_blob_service = BlockBlobService(
@@ -90,7 +92,6 @@ def images_append(images_list):
 
         if image and allowed_image(image.filename):
             filename = secure_filename(image.filename)
-            print(filename)
 
             path_to_dir = './flaskr/static/images/uploads/' + filename
             user = User.query.filter_by(name=current_user.name).first()
